@@ -1,18 +1,15 @@
-USERNAME = "admin"
-PASSWORD = "1234"
+#!/bin/bash
 
-max_attempts = 3
+# Hardcoded credentials
+USERNAME="admin"
+PASSWORD="1234"
 
-for attempt in range(max_attempts):
-    username = input("Username: ")
-    password = input("Password: ")
+read -p "Username: " input_user
+read -s -p "Password: " input_pass
+echo
 
-    if username == USERNAME and password == PASSWORD:
-        print("Login successful!")
-        break
-    else:
-        remaining = max_attempts - attempt - 1
-        if remaining > 0:
-            print(f"Invalid credentials. {remaining} attempt(s) remaining.\n")
-        else:
-            print("Account locked. Too many failed attempts.")
+if [[ "$input_user" == "$USERNAME" && "$input_pass" == "$PASSWORD" ]]; then
+    echo "Login successful!"
+else
+    echo "Invalid username or password."
+fi
